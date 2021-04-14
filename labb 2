@@ -1,0 +1,79 @@
+import math
+
+def logStar(x):                         #1
+    while x<=1000:
+        print(x,'\t', math.log(x,2))
+        x = x*2
+
+
+logStar(1)
+
+print()
+print()
+print()
+
+
+    #a = y//100000
+    #b = y//10000-a*10
+    #c = y//1000 -a*100-b*10
+    #d = y//100 -a*1000-b*100-c*10
+    #e = y//10 -a*10000-b*1000-c*100-d*10
+    #f = y-a*100000-b*10000-c*1000-d*100-e*10
+    #print(a+b+c+d+e+f)                 #2
+
+  
+def tvarsumman(y):
+    n = round(math.log(y,10))
+    while n>=0:
+        
+        s = (y//10**(n))-(y//10**(n+1))*10
+        
+        n = n-1
+        print(s)
+    
+    
+tvarsumman(1234567)
+
+print()
+print()
+print()
+                                        #3
+def avbetalningsplan(p, r, a):
+    print("Årlig avbetalning:",a)           
+    print("Räntesats:",r*100,"%")
+    print("Ingående skuld:", p)
+    print()
+    while p>=0:
+        n=1
+        A=a-(p*r)
+        p=p*(r+1)-a
+        R=(A-a)*-1
+        print("-- År",n,"--")
+        if p>=0:
+            print("Återstående skuld:",'\t',p)
+        elif p<0:
+            print("Återstående skuld:",'\t',0)
+        if p>=0:
+            print("Amorterat belopp:",'\t',A)
+        elif p<0:
+            print("Amorterat Belopp:",'\t',(p+a)/(r+1))
+            
+        print("Ränta:",'\t','\t','\t',R)
+        print()
+       
+
+avbetalningsplan(100, 0.05, 25.0)
+
+                                        #4
+def derivative(f, x, h):
+    F=(1/(2*h))*(f*(x+h)-f*(x-h))
+    print(F)
+
+derivative(3.0,4.0,5.0)
+derivative(5,100,200)
+
+
+
+
+
+    
