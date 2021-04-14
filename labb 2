@@ -64,7 +64,7 @@ def avbetalningsplan(p, r, a):
 
 avbetalningsplan(100, 0.05, 25.0)
 
-                                        #4
+                                        #4 a)
 def derivative(f, x, h):
     F=(1/(2*h))*(f*(x+h)-f*(x-h))
     print(F)
@@ -73,6 +73,8 @@ derivative(3.0,4.0,5.0)
 derivative(5,100,200)
 
 
+                                        #b)
+def solve(f,x9, h)
 
 
 
