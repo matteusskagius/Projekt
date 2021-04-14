@@ -1,12 +1,15 @@
 import math
 
 def logStar(x):                         #1
-    while x<=1000:
-        print(x,'\t', math.log(x,2))
-        x = x*2
+    n=0
+    while x>=1:
+        x=math.log(x, 2)
+        #print(x,'\t', math.log(x,2))
+        n+=1
+    print(n-1)
 
 
-logStar(1)
+logStar(16)
 
 print()
 print()
@@ -24,15 +27,18 @@ print()
   
 def tvarsumman(y):
     n = round(math.log(y,10))
+    sum=0
     while n>=0:
         
         s = (y//10**(n))-(y//10**(n+1))*10
         
         n = n-1
         print(s)
+        sum+=s
+        
+    print(sum)
     
-    
-tvarsumman(1234567)
+tvarsumman(123456)
 
 print()
 print()
@@ -43,8 +49,9 @@ def avbetalningsplan(p, r, a):
     print("Räntesats:",r*100,"%")
     print("Ingående skuld:", p)
     print()
+    n=0
     while p>=0:
-        n=1
+        n+=1
         A=a-(p*r)
         p=p*(r+1)-a
         R=(A-a)*-1
@@ -60,7 +67,8 @@ def avbetalningsplan(p, r, a):
             
         print("Ränta:",'\t','\t','\t',R)
         print()
-       
+        print()
+        print()
 
 avbetalningsplan(100, 0.05, 25.0)
 
@@ -74,8 +82,4 @@ derivative(5,100,200)
 
 
                                         #b)
-def solve(f,x9, h)
-
-
-
-    
+#def solve(f,x9, h)
