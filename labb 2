@@ -9,7 +9,7 @@ def logStar(x):                         #1
     print(n-1)
 
 
-logStar(16)
+#logStar(16)
 
 print()
 print()
@@ -36,9 +36,9 @@ def tvarsumman(y):
         print(s)
         sum+=s
         
-    print(sum)
+    print("Tvärsumman:",sum)
     
-tvarsumman(123456)
+#tvarsumman(123456)
 
 print()
 print()
@@ -74,12 +74,22 @@ avbetalningsplan(100, 0.05, 25.0)
 
                                         #4 a)
 def derivative(f, x, h):
-    F=(1/(2*h))*(f*(x+h)-f*(x-h))
-    print(F)
+    F=(1/(2*h))*(f(x+h)-f(x-h))
+    return(F)
 
-derivative(3.0,4.0,5.0)
-derivative(5,100,200)
-
+derivative(math.sin,4.0,5.0)
+derivative(math.sin,100,200)
+derivative(math.sin, 10, 40)
 
                                         #b)
-#def solve(f,x9, h)
+def solve(f, x0, h):
+    
+    while abs(f(x0))>h:
+        #print(f(x0))
+        x0 = x0-f(x0)/(derivative(f, x0, h))
+        #print(f(x0))
+        
+    print(x0)
+    
+
+solve(-1+x0**2, 0.9, 0.001)
