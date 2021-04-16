@@ -1,97 +1,166 @@
 import math
 
-def logStar(x):                         #1
-    n=0
-    while x>=1:
-        x=math.log(x, 2)
-        #print(x,'\t', math.log(x,2))
-        n+=1
-    print(n-1)
+print()
+print("-Uppgift 1-")
+                                        #1)
+def logStar(x):                         #defenierar funktionen logStar
+    n=0                                 #
+    while x>1:                         #lägger in while kommandot för då slutar funktionen när x är mindre än 1
+        x=math.log(x, 2)                #x är lika med andra logarithmen
+        n+=1                            #här adderas den tidigare n med 1
+    print(n-1)                          #n blir antalet gånger funktion snurrar tills x är <1,
+    return(n)                                    #därför måste det subtraheras med 1 för att få antalet gånger funktionen snurrar innan x är <1. 
 
-
-#logStar(16)
+import d0028e_lab2_logStarTest
+logStar(32)                             #kallar på logStar
 
 print()
 print()
 print()
 
 
-    #a = y//100000
-    #b = y//10000-a*10
+    #a = y//100000                      #en funktion som printar ut varje 
+    #b = y//10000-a*10                  #på 6 siffror
     #c = y//1000 -a*100-b*10
     #d = y//100 -a*1000-b*100-c*10
     #e = y//10 -a*10000-b*1000-c*100-d*10
     #f = y-a*100000-b*10000-c*1000-d*100-e*10
-    #print(a+b+c+d+e+f)                 #2
+    #print(a+b+c+d+e+f)                 #2)
 
+print()
+print("-Uppgift 2-")
   
 def tvarsumman(y):
-    n = round(math.log(y,10))
-    sum=0
-    while n>=0:
+    if y == 0:
+        print(0)
+        return 0
+    else:
         
-        s = (y//10**(n))-(y//10**(n+1))*10
+        n=round(math.log(y,10))           #logarithmerar y så att funktionen vet hur många varv den skall snurra, värdet blir lika med n
+        sum=0                               #
+        while n>=0:                         #Sätter kreterium på att n>=0 för annars fortsätter den i all evighet
         
-        n = n-1
-        print(s)
-        sum+=s
+                                            #funktionen heltalsdividerar y med 10 upphöjt i n och sedan subtraheras med y heltalsdividerad med 10 upphöjt i (n+1)
+                                            #multiplicerat med 10 det gör att endast entalet blir kvar. Det som händer är att när man har tal på 123 och heltalsdividerar
+                                            #med 100 då blir det 1, sedan i andra steget heltalsdivideras 123 med 10 då blir 12 kvar då behövs det subtraheras med talet man
+                                            #hade i tidgare som multipliceras med 10 för då blir 2 kvar sedan upprepas detta då kommer man få ut 1,2,3.
+            
+            s = (y//10**(n))-(y//10**(n+1))*10          
+            n = n-1                         #lägger in så att n minskar och går mot 0
+            print(s)
+            sum+=s                          #här adderas det tidigare värdet på s med det nya då får man tvärsumman
         
-    print("Tvärsumman:",sum)
-    
-#tvarsumman(123456)
+        print(sum)
+        return sum
+        
+tvarsumman(123)
+
+
+import d0028e_lab2_sumTest
+
 
 print()
 print()
 print()
-                                        #3
-def avbetalningsplan(p, r, a):
-    print("Årlig avbetalning:",a)           
-    print("Räntesats:",r*100,"%")
+
+print()
+print("-Uppgift 3-")                           #3
+def avbetalningsplan(p, r, a):          #defenierar funktionen avbetalningsplan
+    print("Årlig avbetalning:",a)       #det är ett anunitetslån där man betalar lika mycket varje år.
+    print("Räntesats:",r*100,"%")       #så när skulden minskar betalas mindre i ränta 
     print("Ingående skuld:", p)
     print()
-    n=0
-    while p>=0:
-        n+=1
-        A=a-(p*r)
-        p=p*(r+1)-a
-        R=(A-a)*-1
+    n=0                                 
+    while p>=0:                         #sätter stop när skulden är slut
+        n+=1                            #den räknar antal år
+        A=a-(p*r)                       #amorteratbelopp --- 
+        p=p*(r+1)-a                     #Återstående skuld
+        R=(A-a)*-1                      #Räntan
         print("-- År",n,"--")
+        if p>=0:                        
+            print("Återstående Skuld:",'\t',p)
+        elif p<0:                       #när skulden blir <0 då printar den bara 0 annars funktionen p
+            print("Återstående Skuld:",'\t',0)
         if p>=0:
-            print("Återstående skuld:",'\t',p)
-        elif p<0:
-            print("Återstående skuld:",'\t',0)
-        if p>=0:
-            print("Amorterat belopp:",'\t',A)
-        elif p<0:
+            print("Amorterat Belopp:",'\t',A)
+        elif p<0:                       #när skulden blir <0 då printar den motsata funktionen A för att få ut hur mycket man betalar sista året.
             print("Amorterat Belopp:",'\t',(p+a)/(r+1))
             
-        print("Ränta:",'\t','\t','\t',R)
+        print("Ränta:",'\t','\t','\t',R) #här räknas räntan
         print()
         print()
         print()
 
 avbetalningsplan(100, 0.05, 25.0)
 
-                                        #4 a)
-def derivative(f, x, h):
-    F=(1/(2*h))*(f(x+h)-f(x-h))
-    print(F)
+
+
+
+
+
+
+
+print()
+print("-Uppgift 4a)-")                                     #4 a)
+def derivative(f, x, h):                #defenierar derivative
+    F=(1/(2*h))*(f(x+h)-f(x-h))         #lägger in funktionen som kom i uppgiften
+    print(F)                            #printar ut F
     
-    return(F)
+    return(F)                           #return för att behålla värdet på f
 
-derivative(math.sin, 1.57, 0.0001)
-#derivative(math.sin,100, 0.001)
-#derivative(math.sin, 10, 0.0001)
 
-                                        #b)
-def solve(f, x0, h):
+def e1(x):                              #defenierar olika ekvation så att de blir lättare att testa derivative
+    e1=(x**2-1)
+
+    return(e1)
+
+derivative(e1, 0.9, 0.0000001)
+
+
+
+def e2(x):
+    e2=(math.sin(x))
+
+    return(e2)
+
+derivative(e2, math.pi/2, 0.001)
+
+
+def e3(x):
+    e3=(2**x-1)
+
+    return(e3)
+
+derivative(e3, 0.9, 0.0000001)
+
+
+
+
+    
+print()
+print("-Uppgift 4b)-")                     #b)
+                                        
+def solve(f, x0, h):                    #defenierar funktionen solve
     
     while abs(f(x0))>h:
-        #print(f(x0))
-        x0 = x0-f(x0)/(derivative(f, x0, h))
-        #print(f(x0))
+    
+        x0 = x0-f(x0)/(derivative(f, x0, h)) #här lägger jag in ekvationen från 4a) i nämnaren
         
     print(x0)
-    
 
-solve(-1+x0**2, 0.9, 0.001)
+    return(x0)
+
+solve(e1, 2, 0.000001)                  #använder e1,e2,e3 för att testa solve              
+print()
+
+solve(e2, 2, 0.000001)
+
+print()
+solve(e3, 2, 0.0000001)
+
+import d0028e_lab2_solveTest
+
+
+
+
+              
