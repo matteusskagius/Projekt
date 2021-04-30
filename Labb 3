@@ -1,0 +1,116 @@
+import math
+print("Uppgift 0")              #0
+print()
+
+print("Välj alternativ")
+print("log","\t\t",1)
+print("Tvärsumman","\t",2)
+print("Annuitetslån","\t",3)
+print("derivata","\t",4)
+
+list.insert()
+
+
+if 1:
+        def logStar(x):                     
+                n=0                                 
+                while x>1:                         
+                    x=math.log(x, 2)                
+                    n+=1                           
+                print(n-1)                          
+                return(n) 
+                              
+
+                          
+elif 2:
+        def tvarsumman(y):
+                if y == 0:
+                    print(0)
+                    return 0
+                else:
+                    n=round(math.log(y,10))            
+                    sum=0                               
+                    while n>=0:                        
+                        s = (y//10**(n))-(y//10**(n+1))*10          
+                        n = n-1                         
+                        print(s)
+                        sum+=s                                  
+                    print(sum)
+                    return sum
+
+
+elif 3:                       
+        def avbetalningsplan(p, r, a):          
+                print("Årlig avbetalning:",a)       
+                print("Räntesats:",r*100,"%")        
+                print("Ingående skuld:", p)
+                print()
+                n=0                                 
+                while p>=0:                         
+                    n+=1                            
+                    A=a-(p*r)                        
+                    p=p*(r+1)-a                     
+                    R=(A-a)*-1                      
+                    print("-- År",n,"--")
+                    if p>=0:                        
+                        print("Återstående Skuld:",'\t',p)
+                    elif p<0:                       
+                        print("Återstående Skuld:",'\t',0)
+                    if p>=0:
+                        print("Amorterat Belopp:",'\t',A)
+                    elif p<0:                       
+                        print("Amorterat Belopp:",'\t',(p+a)/(r+1))
+                        
+                    print("Ränta:",'\t','\t','\t',R) 
+
+  
+
+elif 4:                                        
+        def derivative(f, x, h):                
+                F=(1/(2*h))*(f(x+h)-f(x-h))         
+                print(F)                        
+                
+                return(F)                          
+
+
+            #def e1(x):                              
+                e1=(x**2-1)
+
+                return(e1)
+
+            #derivative(e1, 0.9, 0.0000001)
+
+
+
+           # def e2(x):
+                e2=(math.sin(x))
+
+                return(e2)
+
+            #derivative(e2, math.pi/2, 0.001)
+
+
+           # def e3(x):
+                e3=(2**x-1)
+
+                return(e3)
+
+            #derivative(e3, 0.9, 0.0000001)
+                          
+            #def solve(f, x0, h):                    
+                
+                while abs(f(x0))>h:
+                
+                    x0 = x0-f(x0)/(derivative(f, x0, h)) 
+                    
+                print(x0)
+
+                return(x0)
+
+            #solve(e1, 2, 0.000001)                                
+            
+
+            #solve(e2, 2, 0.000001)
+
+            
+            #solve(e3, 2, 0.0000001)         
