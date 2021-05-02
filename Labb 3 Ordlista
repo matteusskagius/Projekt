@@ -1,0 +1,65 @@
+import math
+
+print("Ordlista")
+def main_dic ():
+
+    
+    print("lägg till ord",1)
+    print("Slå upp ord",2)
+    print("Avsluta program",3)
+
+    x=int(input("Vad vill du göra:"))
+    
+    while x==1 or x==2:
+        dict = {
+            "hej": "hello",
+            "hejdå": "bye"
+                }
+        #print(dict)
+        #for d in dict:
+         #   print(d)
+        print()
+        print("---")
+        print()
+            
+        if x==1:
+            o1=input("ord:",)
+            b1=str(input("betydelse:",))
+            o1=[o1,b1]
+            print()
+            print("-------")
+            print("ord:",(o1[0]))
+            print("betydelse:",(o1[1]))
+            print()
+
+            dict["o1"]= "b1"
+            print()
+            print(dict)
+            
+
+            print(o1)
+            print()
+            print("---")       
+            print()
+            
+        elif x==2:
+            print()
+            i=input("sök ord:")
+            y=dict[i]
+            print(i,"betyder",y)
+            print()
+            print("---")
+            print()
+            
+        print("lägg till ord",1)
+        print("Slå upp ord",2)
+        print("Avsluta program",3)
+        x=int(input("Vad vill du göra:"))
+        
+        
+    else:
+        exit
+main_dic()
+
+
+ 
