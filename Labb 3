@@ -8,54 +8,77 @@ def menu():             #0
     print("Annuitetslån","\t\t",2)
     print("derivata","\t\t",3)
     print("Avsluta programmet","\t",4)
+    print()
     
-    Alternativ=int(input("Välj alternativ:"))                      
-    if Alternativ == 1:
-        y=int(input("Vilket nummer:","\t"))
-        def tvarsumman(y):
-            if y == 0:
-                print(0)
-                return 0
-            else:
-                n=round(math.log(y,10))            
-                sum=0                               
-                while n>=0:                        
-                    s = (y//10**(n))-(y//10**(n+1))*10          
-                    n = n-1                         
-                    print(s)
-                    sum+=s                                  
-                print(sum)
-                return sum
-                menu()
+    Alternativ=int(input("Välj alternativ:"))
 
-    if Alternativ == 2:
-        p=(input("kvar att betala"))
-        r=(input("Ränta"))
-        a=(input("Amortering"))
-        def avbetalningsplan(p, r, a):
-            print("Årlig avbetalning:",a)       
-            print("Räntesats:",r*100,"%")        
-            print("Ingående skuld:", p)
+    if Alternativ>4 and Alternativ<1:
+        print("välj mellan 1 och 4")
+        
+        
+   
+    else:
+        print("du valde alternativ",Alternativ)
+        if Alternativ == 1:
             print()
-            n=0                                 
-            while p>=0:                         
-                n+=1                            
-                A=a-(p*r)                        
-                p=p*(r+1)-a                     
-                R=(A-a)*-1                      
-                print("-- År",n,"--")
-                if p>=0:                        
-                    print("Återstående Skuld:",'\t',p)
-                elif p<0:                       
-                    print("Återstående Skuld:",'\t',0)
-                if p>=0:
-                    print("Amorterat Belopp:",'\t',A)
-                elif p<0:                       
-                    print("Amorterat Belopp:",'\t',(p+a)/(r+1))
-                                    
-                print("Ränta:",'\t','\t','\t',R)
+            y=input("Vilket nummer:","\t")
+            def tvarsumman(y):
+                if y == 0:
+                    print(0)
+                    return 0
+                else:
+                    n=round(math.log(y,10))            
+                    sum=0                               
+                    while n>=0:                        
+                        s = (y//10**(n))-(y//10**(n+1))*10          
+                        n = n-1                         
+                        print(s)
+                        sum+=s                                  
+                    print(sum)
+                    return sum
+                    menu()
+            tvarsumman(y)
+            
+
+        elif Alternativ == 2:
+            print()
+            p=float(input("kvar att betala:"))
+            r=float(input("Ränta:"))
+            a=float(input("Amortering:"))
+            print()
+            def avbetalningsplan(p, r, a):
+                print("Årlig avbetalning:",a)       
+                print("Räntesats:",r*100,"%")        
+                print("Ingående skuld:", p)
+                print()
+                n=0                                 
+                while p>=0.0:                         
+                    n+=1                            
+                    A=a-(p*r)                        
+                    p=p*(r+1)-a                     
+                    R=(A-a)*-1                      
+                    print("-- År",n,"--")
+                    if p>=0:                        
+                        print("Återstående Skuld:",'\t',p)
+                    elif p<0:                       
+                        print("Återstående Skuld:",'\t',0)
+                    if p>=0:
+                        print("Amorterat Belopp:",'\t',A)
+                    elif p<0:                       
+                        print("Amorterat Belopp:",'\t',(p+a)/(r+1))
+                                        
+                    print("Ränta:",'\t','\t','\t',R)
                 menu()
-        avbetalningsplan(p, r, a)
+            avbetalningsplan(p, r, a)
+
+
+        else:
+            exit
+
+menu()
+        
+
+
   
 
 #if Alternativ == 3:                                        
