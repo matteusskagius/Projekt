@@ -159,7 +159,11 @@ def sättinTupler():
 #slår upp ord i ordlistan tupler
 def sökordtupler():
     ordSök=input("vilket ord söker du:")
+    print("Searching for :" + ordSök + " in ")
+    print(tupler)
+
     if ordSök in tupler:
+        print("Found " + ordSök)
         B=tupler[tupler.index(ordSök)+1]        #letar fram betydelsen
         print()
         print("ditt ord", ordSök)
