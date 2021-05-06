@@ -1,18 +1,205 @@
-ordLista = []
-beskrivning = []
-tupler = ()
-dic = {}
-
-#meny för lista, tupel och dict
-def meny():
-    print("Sätt in ord", 1)
-    print("Sök ord", 2)
-    print("Avsluta program", 3)
-    print()
-
-
 # meny välja lista, tupel eller dict
 def huvud_menu():
+    ordLista = []
+    beskrivning = []
+    tupler = ()
+    dic = {}
+
+    #meny för lista, tupel och dict
+    def meny():
+        print("Sätt in ord", 1)
+        print("Sök ord", 2)
+        print("Avsluta program", 3)
+        print()
+    
+
+
+    #meny för listor
+    def menu_Listor():
+        print()
+        print("---")
+        print()
+        print("menu Listor")
+        
+        meny()
+
+        vL=int(input("Välj:"))      #välj alternativ
+        print()
+        print("---")
+        print()
+        
+        if vL == 1:
+            sättinlista()
+
+        if vL == 2:
+            sökordlista()
+
+        if vL == 3:
+            huvud_menu()
+
+        else:
+            print("Gör ett val mellan 1-3")
+            menu_Listor()
+            
+    #funktion som sätter in nya ord i ordlistan 
+    def sättinlista():
+        nO=input("vilket ord vill du lägga till:")      
+
+        if nO in ordLista:
+            print("ditt ord finns redan")
+
+        else:
+            B=input("Betydelse:")
+            ordLista.append(nO)
+            beskrivning.append(B)
+        return(ordLista, beskrivning, menu_Listor())
+        print()
+        print("---")
+        print()
+
+    #slår upp ord i ordlistan lista
+    def sökordlista():
+        ordKoll=input("vilket ord söker du:")
+        koll=ordKoll in ordLista
+
+        if koll == True:
+            print("ditt ord:",ordKoll)
+            print("Betyder:", beskrivning[ordLista.index(ordKoll)])     
+
+        else:
+            print("ditt ord finns inte i ordlistan")
+
+        print()
+        print("---")
+        print()
+
+        menu_Listor()
+
+    def menu_Tupler():
+        print("meny Tupler")
+        meny()
+        print()
+
+        
+        vT=int(input("Välj:"))      #välj alternativ
+        print()
+        print("---")
+        print()
+
+        if vT == 1:
+            sättinTupler()
+
+        elif vT == 2:
+            sökordtupler()
+
+        elif vT == 3:
+            huvud_menu()
+            
+            
+
+        else:
+            print("Gör ett val mellan 1-3")
+        print()
+        print("---")
+        print()
+            
+
+    #funktion som sätter in nya ord i ordlistan
+    def sättinTupler():
+        print()
+        print("---")
+        print()
+        global tupler
+        nO=input("vilket ord vill du lägga till:")
+
+        if nO in tupler:
+            print("ditt ord finns redan i ordlistan")
+
+        else:
+            B=input("Betydelse:")
+            tupler=tupler+(nO,)                     #lägger till ordet och betydelsen
+            tupler=tupler+(B,)
+            print()
+            print("---")
+            print()
+
+        return(tupler, menu_Tupler())
+
+    #slår upp ord i ordlistan tupler
+    def sökordtupler():
+        ordSök=input("vilket ord söker du:")
+        if ordSök in tupler:
+            B=tupler[tupler.index(ordSök)+1]        #letar fram betydelsen
+            print()
+            print("ditt ord", ordSök)
+            print("Betyder",B)
+            print()
+            print("---")
+            print()
+
+        else:
+            print("Ditt ord finns inte i Ordlistan")
+            print()
+
+            print()
+            print("---")
+            print()
+
+        menu_Tupler()
+
+
+    #funktion som sätter in nya ord i ordlistan
+    def sättindict():
+        nO=input("vilket ord vill du lägga till:")
+
+        if nO in dic:
+            print("ditt ord finns redan i ordlistan")
+
+        else:
+            B=input("Betydelse:")
+            dic[nO]=B                   #sätter ordet som nyckel för betydelsen
+        print()
+        print("---")
+        print()
+
+        return(dic, menu_Dictionary())
+
+    #slår upp ord i ordlistan dictionary
+    def sökorddict():
+        ordDic=input("vilket ord söker du:")
+
+        if ordDic in dic:
+            print("Ditt ord:",ordDic)
+            print("Betyder:",dic[ordDic])       #använder ordet som nyckel för att ta fram betydelsen
+            print()
+            print("---")
+            print()
+
+        else:
+            print("Ditt ord finns inte i Ordlistan")
+
+        menu_Dictionary()
+            
+        
+
+    def menu_Dictionary():
+        print("meny dictionary")
+        meny()
+        print()
+
+        vD=int(input("Välj:"))       #välj alternativ
+
+        if vD == 1:
+            sättindict()
+
+        if vD == 2:
+            sökorddict()
+
+        if vD == 3:
+            huvud_menu()
+
+            
+
     print("Listor",1)
     print()
     print("Tupler",2)
@@ -42,198 +229,6 @@ def huvud_menu():
 
     elif v1 == 4:
         exit()
-    
-
-
-#meny för listor
-def menu_Listor():
-    print()
-    print("---")
-    print()
-    print("menu Listor")
-    
-    meny()
-
-    vL=int(input("Välj:"))      #välj alternativ
-    print()
-    print("---")
-    print()
-    
-    if vL == 1:
-        sättinlista()
-
-    if vL == 2:
-        sökordlista()
-
-    if vL == 3:
-        huvud_menu()
-
-    else:
-        print("Gör ett val mellan 1-3")
-        menu_Listor()
-        
-#funktion som sätter in nya ord i ordlistan 
-def sättinlista():
-    nO=input("vilket ord vill du lägga till:")      
-
-    if nO in ordLista:
-        print("ditt ord finns redan")
-
-    else:
-        B=input("Betydelse:")
-        ordLista.append(nO)
-        beskrivning.append(B)
-    return(ordLista, beskrivning, menu_Listor())
-    print()
-    print("---")
-    print()
-
-#slår upp ord i ordlistan lista
-def sökordlista():
-    ordKoll=input("vilket ord söker du:")
-    koll=ordKoll in ordLista
-
-    if koll == True:
-        print("ditt ord:",ordKoll)
-        print("Betyder:", beskrivning[ordLista.index(ordKoll)])     
-
-    else:
-        print("ditt ord finns inte i ordlistan")
-
-    print()
-    print("---")
-    print()
-
-    menu_Listor()
-
-def menu_Tupler():
-    print("meny Tupler")
-    meny()
-    print()
-
-    
-    vT=int(input("Välj:"))      #välj alternativ
-    print()
-    print("---")
-    print()
-
-    if vT == 1:
-        sättinTupler()
-
-    elif vT == 2:
-        sökordtupler()
-
-    elif vT == 3:
-        huvud_menu()
-        
-        
-
-    else:
-        print("Gör ett val mellan 1-3")
-    print()
-    print("---")
-    print()
-        
-
-#funktion som sätter in nya ord i ordlistan
-def sättinTupler():
-    print()
-    print("---")
-    print()
-    global tupler
-    nO=input("vilket ord vill du lägga till:")
-
-    if nO in tupler:
-        print("ditt ord finns redan i ordlistan")
-
-    else:
-        B=input("Betydelse:")
-        tupler=tupler+(nO,)                     #lägger till ordet och betydelsen
-        tupler=tupler+(B,)
-        print()
-        print("---")
-        print()
-
-    return(tupler, menu_Tupler())
-
-#slår upp ord i ordlistan tupler
-def sökordtupler():
-    ordSök=input("vilket ord söker du:")
-    print("Searching for :" + ordSök + " in ")
-    print(tupler)
-
-    if ordSök in tupler:
-        print("Found " + ordSök)
-        B=tupler[tupler.index(ordSök)+1]        #letar fram betydelsen
-        print()
-        print("ditt ord", ordSök)
-        print("Betyder",B)
-        print()
-        print("---")
-        print()
-
-    else:
-        print("Ditt ord finns inte i Ordlistan")
-        print()
-
-        print()
-        print("---")
-        print()
-
-    menu_Tupler()
-
-
-#funktion som sätter in nya ord i ordlistan
-def sättindict():
-    nO=input("vilket ord vill du lägga till:")
-
-    if nO in dic:
-        print("ditt ord finns redan i ordlistan")
-
-    else:
-        B=input("Betydelse:")
-        dic[nO]=B                   #sätter ordet som nyckel för betydelsen
-    print()
-    print("---")
-    print()
-
-    return(dic, menu_Dictionary())
-
-#slår upp ord i ordlistan dictionary
-def sökorddict():
-    ordDic=input("vilket ord söker du:")
-
-    if ordDic in dic:
-        print("Ditt ord:",ordDic)
-        print("Betyder:",dic[ordDic])       #använder ordet som nyckel för att ta fram betydelsen
-        print()
-        print("---")
-        print()
-
-    else:
-        print("Ditt ord finns inte i Ordlistan")
-
-    menu_Dictionary()
-        
-    
-
-def menu_Dictionary():
-    print("meny dictionary")
-    meny()
-    print()
-
-    vD=int(input("Välj:"))       #välj alternativ
-
-    if vD == 1:
-        sättindict()
-
-    if vD == 2:
-        sökorddict()
-
-    if vD == 3:
-        huvud_menu()
-
-
 
         
         
