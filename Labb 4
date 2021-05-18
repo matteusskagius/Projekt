@@ -1,0 +1,89 @@
+def meny():
+    print("1. Create name")
+    print("2. Add name number")
+    print("3. Lookup name")
+    print("4. Delete name number")
+    print("5. Delete name")
+    print("6. Save filename")
+    print("7. Load filename")
+    print("8. Quit")
+    print()
+    x=int(input("Välj:"))
+    print()
+    print("---")
+    print()
+
+    if x == 1:
+        createname()
+        
+    if x == 2:
+        addnamenumber()
+
+    if x == 3:
+        lookupname()
+
+    if x == 4:
+        deletenamenumber()
+
+    if x == 5:
+        deletename()
+
+    if x == 6:
+        savefilename()
+        
+    if x == 7:
+        loadfilename()
+
+    if x == 8:
+        exit()
+
+
+def skapafil():
+    x=open("Kontakter.txt", "a")
+    
+
+            
+def createname():
+    open("Kontakter.txt")
+    
+    x=str(input("Namn:"))
+
+    if x in dic:
+        print("Kontakten finns redan")
+
+    else:
+        dic[x]=0
+
+
+    print()
+    print("---")
+    print()    
+    meny()
+
+
+def addnamenumber():
+    heh
+
+def lookupname():
+    hej
+
+def deletenamenumber():
+    hej
+
+def deletename():
+    o
+    x=str(input("Namn du vill ta bort:") 
+    
+    katalog.pop(x)
+
+
+def savefilename():
+    hej
+
+def loadfilename():
+    hej
+
+
+
+
+meny()
