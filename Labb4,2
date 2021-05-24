@@ -1,0 +1,209 @@
+import json
+
+ #funktion som skapar namn med dictionary, kollar även om namnet finns
+def createname(name, katalog):          
+    if name not in katalog:
+        katalog[name]=[]
+        print("Namn skapades")
+
+    else:    
+        print("Namn finns redan")
+
+    print()
+    print("---")
+    print() 
+
+#funktion som kan lägga till namn, kollar även om namnet finns
+def addnumber(name, number, katalog):
+    
+    if name in katalog:
+        try:
+            i = katalog[name].index(number)
+            print("Nummer lades till")
+        except ValueError:
+           katalog[name].append(number)
+    else:
+        print("Namn finns inte i katalogen")
+        
+    print()
+    print("---")
+    print()
+                      
+#funktion som söker up kontakter, kollar också om namnet finns 
+def lookupname(name, katalog):
+    if name in katalog:
+        print("Telefonnummer"+ name + "is:")
+        for number in katalog[name]:
+            print(number)
+    else:
+        print("Namn finns inte i katalog")
+        
+    print()
+    print("---")
+    print()
+    
+#funktion som tar bort nummer, om numret inte finns kommer felmeddelande
+#kollar även om kontakten finns
+def deletenumber(name, number, katalog):
+    if name in katalog:
+        try:
+            katalog[name].remove(number)
+        except ValueError:
+            print("Numret finns inte")
+
+        else:
+            print("Namn finns inte som kontakt")
+    print()
+    print("---")
+    print()
+    
+#funktion som som raderar namn från katalogen
+def deletename(name, katalog):
+    if name in katalog:
+        del katalog[name]
+        
+    else:
+        print("Namn finns inte som kontakt")
+    print()
+    print("---")
+    print()
+    
+#funktion som öppnar filen och sedan överskriver tidigare filer
+#med samma namn
+def savefilename(name, katalog):
+    f = open(name, 'w')
+    json.dump(katalog, f)
+    f.close()
+    print()
+    print("---")
+    print()
+    
+#funktion som laddar sparade filer
+def loadfilename(name):
+    print("Indata:")
+    print("name:"+ name)
+    f = open(name, 'r')
+
+    print("load from file:" + name)
+    tmp = json.load(f)
+    print()
+    print("hämtad från fil")
+    print(tmp)
+    f.close()
+    return tmp
+    print()
+    print("---")
+    print()
+
+
+#meny
+def meny():
+    print("1. Create name")
+    print("2. Add number")
+    print("3. Lookup name")
+    print("4. Delete number")
+    print("5. Delete name")
+    print("6. Save filename")
+    print("7. Load filename")
+    print("8. Quit")
+    
+    print()
+    x = input('Välj alternativ:')
+    print("har valt"+x)
+  
+    if(x == '1'):
+        return 'createname'
+        
+    elif(x == '2'):
+        return 'addnumber'
+
+    elif(x == '3'):
+        return 'lookupname'
+
+    elif(x == '4'):
+        return 'deletenumber'
+
+    elif(x == '5'):
+        return 'deletename'
+
+    elif(x == '6'):
+        return 'savefilename'
+        
+    elif(x == '7'):
+        return 'loadfilename'
+
+    elif(x == '8'):
+        return 'quit'
+
+    else:
+        return 'invalid'
+    
+    print()
+    print("---")
+    print()
+
+
+#huvudmenyn den här gör att programmet kommer loopa sig tills
+#användaren bestämmer sig för att avsluta
+def Hmeny():
+    katalog = {}
+
+    vald = meny()
+    
+    
+    while vald != "quit":
+        if(vald == 'createname'):
+            name = input("Ange namn:")
+            createname(name, katalog)
+            
+
+        elif(vald == 'addnumber'):
+            name = input("Angenamn:")
+            number = input("Ange telefonnummer:")
+            addnumber(name, number, katalog)
+            
+
+        elif(vald == 'lookupname'):
+            name = input("Ange namn:")
+            lookupname(name, katalog)
+            
+
+        elif(vald == 'deletenumber'):
+            name = input("Ange namn:")
+            number = input("Ange Nummer:")
+            deletenumber(name, number, katalog)
+            
+
+        elif(vald == 'deletename'):
+            name = input("Ange namn:")
+            deletename(name, katalog)
+            
+
+        elif(vald == 'savefilename'):
+            filename = input("Ange filnamn:")
+            savefilename(filename, katalog)
+
+
+        elif(vald == 'loadfilename'):
+            name = input("Ange filnamn:")
+            katalog=loadkatalog(filename)
+            print("katalog i mainloopen")
+            print(katalog)
+            
+            #loadfilename(katalog)
+
+
+
+        
+        vald = meny()
+        print("Val: " + vald)
+        
+    print("programmet avslutades")
+
+
+        
+    
+
+
+
+Hmeny()
