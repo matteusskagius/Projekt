@@ -1,0 +1,160 @@
+import json
+
+#huvudmenyn 
+def meny():
+    katalog = {}                            #dictionary skapas
+    
+    while True:
+        
+        i =input(":") 
+        command = i.split(' ')              #splitar strängen
+
+        
+        if(command[0] == 'create'):
+            create(katalog, command[1])     #command 1 är namnet som skrivs in
+             
+
+        elif(command[0] == 'add'):
+            add(katalog, command[1], command[2])      #command 1 är namnet som skrivs in och 2 är numret
+            
+
+        elif(command[0] == 'lookup'):
+            lookup(katalog, command[1])         #command 1 är namnet som skrivs in
+            
+
+        elif(command[0] == 'deletenr'):
+            deletenr(katalog, command[1], command[2])           #command 1 är namnet som skrivs in command 2 är numret
+            
+
+        elif(command[0] == 'deletename'):
+            deletename(katalog, command[1])         #command 1 är namnet som skrivs in
+            
+
+        elif(command[0] == 'save'):
+            save(katalog, command[1])           #command 1 är namnet som skrivs in
+
+
+        elif(command[0] == 'load'):
+            katalog=load(katalog, command[1])           #command 1 är namnet som skrivs in
+            print("katalog i mainloopen")
+            print(katalog)
+
+
+        elif(command[0] == 'exit'):
+            raise SystemExit
+
+        
+        
+        
+    print("programmet avslutades")
+
+
+
+#funktion som skapar namn med dictionary, kollar även om namnet finns
+def create(katalog, name):
+    if name in katalog:                         
+        print("Namn finns redan")           
+
+    else:    
+        katalog[name] = []
+        print("Namn skapades")
+
+    print(katalog)
+    return(katalog)
+    print()
+    print("---")
+    print() 
+
+#funktion som kan lägga till namn, kollar även om namnet finns
+def add(katalog, name, number):
+
+    print(katalog)
+    if name in katalog:
+        if number in katalog[name]:
+            print("numret finns redan")
+            
+        else:
+            try:
+                i = katalog[name].index(number)
+                print("Nummer lades till")
+            except ValueError:
+               katalog[name].append(number)
+    else:
+        print("Namn finns inte i katalogen")
+        
+        
+    print()
+    print("---")
+    print()
+                      
+#funktion som söker up kontakter, kollar också om namnet finns 
+def lookup(katalog, name):
+    if name in katalog:
+        for number in katalog[name]:                
+            print("nummer för", name,"är", number)
+    else:
+        print("Namn finns inte i katalog")
+        
+    print()
+    print("---")
+    print()
+    
+#funktion som tar bort nummer, om numret inte finns kommer felmeddelande
+#kollar även om kontakten finns
+def deletenr(katalog, name, number):
+    if name in katalog:
+        try:
+            katalog[name].remove(number)
+        except ValueError:
+            print("Numret finns inte")
+
+        else:
+            print("Namn finns inte som kontakt")
+    print()
+    print("---")
+    print()
+    
+#funktion som som raderar namn från katalogen
+def deletename(katalog, name):
+    if name in katalog:
+        del katalog[name]
+        
+    else:
+        print("Namn finns inte som kontakt")
+    print()
+    print("---")
+    print()
+    
+#funktion som öppnar filen och sedan överskriver tidigare filer
+#med samma namn
+def save(katalog, name):
+    f = open(name, 'w')
+    json.dump(katalog, f)
+    f.close()
+    print()
+    print("---")
+    print()
+    
+#funktion som laddar sparade filer
+    
+def load(katalog, name):
+    print("name:"+ name)
+    f = open(name, 'r')
+
+    print("load from file:" + name)
+    tmp = json.load(f)
+    
+    print()
+    print("hämtad från fil")
+    print(name)
+    f.close()
+
+    return tmp
+    
+    print()
+    print("---")
+    print()
+
+
+
+meny()
